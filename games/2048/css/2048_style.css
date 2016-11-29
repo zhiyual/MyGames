@@ -1,0 +1,65 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	color: #3c3c3c;
+}
+body{
+	-webkit-perspective: 800;
+	-webkit-perspective-origin: 50% 50%;
+	transform-style: preserve-3d;
+}
+#box{
+	width: 440px;
+	height: 440px;
+	margin: 100px auto;
+	padding: 20px 10px 10px 20px;
+	background: cadetblue;
+	border: 2px solid black;
+	border-radius: 25px;
+}
+
+#box>div{
+	width: 100px;
+	height: 100px;
+	box-sizing: border-box;
+	border: 1px solid #000;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: antiquewhite;
+	float: left;
+	border-radius: 10px;
+	transition: box-shadow 0.6s;
+	text-align: center;
+	line-height: 100px;
+	font-size: 25px;
+	font-weight: bold;
+}
+#box>.n1{
+	background: whitesmoke;
+	box-shadow: inset black 0 0 40px;
+}
+#box>.n2{
+	background: coral;
+	box-shadow: inset black 0 0 40px; 
+}
+#box>.n3{
+	background: lightgreen;
+	box-shadow: inset black 0 0 40px; 
+}
+#box>.n4{
+	background: aqua;
+	box-shadow: inset black 0 0 40px;
+}
+#box>.n5{
+	background: orangered;
+	box-shadow: inset black 0 0 40px;
+}
+#box>.n6{
+	background: yellow;
+	box-shadow: inset red 0 0 40px;
+}
+#box>.max{
+	background: hotpink;
+	box-shadow: gold 0 0 40px, inset gold 0 0 50px;
+}

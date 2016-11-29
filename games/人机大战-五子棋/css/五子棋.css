@@ -1,0 +1,72 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: "微软雅黑";
+}
+#cans{
+	position: absolute;
+	display: block;
+	left: 50%;
+	margin: 100px 0 0 -320px;
+	z-index: 3;
+}
+#canline{
+	position: absolute;
+	display: block;
+	left: 50%;
+	margin: 100px 0 0 -320px;
+	z-index: 2;
+}
+#bg{
+	width: 640px;
+	height: 640px;
+	position: absolute;
+	left: 50%;
+	margin: 100px 0 0 -320px;
+	z-index: 1;
+	overflow: hidden;
+	box-shadow: #3c3c3c 10px 10px 10px;
+}
+#bg img{
+	width: 100%;
+	height: 100%;
+	display: block;
+	background-color: burlywood;
+}
+#ctrl{
+	width: 150px;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin: 90px 0 0 450px;
+}
+#ctrl>input{
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	border: none;
+	border-radius: 8px;
+	background-color: darkturquoise;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 50px;
+	cursor: pointer;
+}
+#ctrl>input:hover{
+	background-color: cyan;
+}
+#steps{
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	border: 1px solid #000;
+	border-radius: 8px;
+	box-sizing: border-box;
+	font-size: 22px;
+	color: red;
+	text-align: center;
+	font-weight: bold;
+	line-height: 50px;
+}

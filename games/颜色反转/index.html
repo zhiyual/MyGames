@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>颜色反转</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑";
+			}
+			body{
+				background: url(img/wood-bg.jpg);
+			}
+			#canvas1,#canvas2{
+				display: block;
+				position: absolute;
+				top: 100px;
+				left: 50%;
+				z-index: 1;
+				border: 1px solid black;
+				box-sizing: content-box;
+			}
+			#canvas2{
+				z-index: 3;
+				transition: box-shadow 0.5s;
+			}
+			#canvas2:hover{
+				box-shadow: #000000 0 0 30px;
+			}
+			#ctrl{
+				width: 800px;
+				height: 50px;
+				position: absolute;
+				left: 50%;
+				top: 20px;
+				margin-left: -400px;
+			}
+			#ctrl a{
+				display: block;
+				width: 130px;
+				height: 50px;
+				margin: 0 10px;
+				float: right;
+				border-radius: 10px;
+				background: -webkit-linear-gradient(bottom, #323B55 0%, #556fb5 50%, #424F71 100%);
+			    background: -moz-linear-gradient(bottom, #323B55 0%, #556fb5 50%, #424F71 100%);
+			    background: linear-gradient(bottom, #323B55 0%, #556fb5 50%, #424F71 100%);
+			    text-align: center;
+			    line-height: 50px;
+			    color: #FFFFFF;
+			    font-weight: bold;
+			    font-size: 25px;
+			    text-decoration: none;
+			    transition: box-shadow 0.3s;
+			}
+			#ctrl a:hover{
+				box-shadow: aqua 0 0 50px;
+			}
+			#ctrl span{
+				float: left;
+				width: 350px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				font-size: 35px;
+				color: #3c3c3c;
+				font-weight: bold;
+			}
+			#ctrl var{
+				font-style: normal;
+				color: #cc0000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas1"></canvas>
+		<canvas id="canvas2"></canvas>
+		<div id="ctrl">
+			<a href="javascript:void (0)" onclick="nextG()">下一关</a>
+			<a href="javascript:void (0)" onclick="lastG()">上一关</a>
+			<a href="javascript:void (0)" onclick="changeG()">选择关卡</a>
+			<span></span>
+		</div>
+		<script src="js/颜色反转.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

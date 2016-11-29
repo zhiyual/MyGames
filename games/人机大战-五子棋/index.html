@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>五子棋</title>
+		<link rel="stylesheet" type="text/css" href="css/五子棋.css"/>
+		<script src="js/五子棋.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<canvas id="cans" width="640" height="640" onclick="play(event)"></canvas>
+		<canvas id="canline" width="640" height="640"></canvas>
+		<div id="bg">
+			<img src="" id="cbg"/>
+		</div>
+		<div id="ctrl">
+			<div id="steps"></div>
+			<input type="button" id="" value="重 玩" onclick="window.location.href='index.html'"/>
+			<input type="button" id="" value="悔 棋" onclick="returnChess()"/>
+			<input type="button" id="" value="更改棋盘" onclick="changeBg()"/>
+		</div>
+	</body>
+</html>

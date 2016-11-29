@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>贪吃蛇</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;font-family: "微软雅黑";}
+			canvas{display: block;position: absolute;left: 50%;margin-left: -400px;top: 100px;}
+			#canvas1{z-index: 2;}
+			#canvas2{z-index: 3;}
+			#score{position: absolute;width: 100px;height: 30px;line-height: 30px;text-align: center;font-size: 22px;color: red;
+			top: 100px;left: 50%;margin-left: 430px;}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas1" width="800" height="600"></canvas>
+		<canvas id="canvas2" width="800" height="600">浏览器不支持 canvas ,请使用Chrome打开</canvas>
+		<div id="score">11</div>
+		<script type="text/javascript">
+			var can1=document.getElementById("canvas1"),
+				can2=document.getElementById("canvas2"),
+				ctx1=can1.getContext('2d'),
+				ctx2=can2.getContext('2d'),
+				score=document.getElementById("score");
+			var GoTo=1;//前进方向：0-上，1-右，2-下，3-左
+			var snake=[];//蛇身坐标
+			var snakeCount=3;//蛇身长度
+			for (var i=0;i<snakeCount;i++) {
+				snake[i]={x:4-i, y:2};
+			}
+			var SquSize=20;//格子大小
+			var cols=40,rows=30;//行列数
+			var wall=[];//墙坐标
+			for (var i=0;i<cols;i++) {
+				wall[i]=[];
+				for (var j=0;j<rows;j++) {
+					wall[i][j]=0;
+				}
+			}
+			var foodX,foodY;//食物坐标
+			var times,isStop=true,speed=200;
+			function setWall () {
+				for (var i=0;i<cols;i++) {
+					wall[i][0]=1;
+					wall[i][rows-1]=1;
+				}
+				for (var i=0;i<rows;i++) {
+					wall[0][i]=1;
+					wall[cols-1][i]=1;
+				}
+			}
+			function drawMap () {
+				setWall();
+				ctx2.fillStyle="darkcyan";
+				for (var i=0;i<cols;i++) {
+					for (var j=0;j<rows;j++) {
+						if (wall[i][j]==1) {
+							ctx2.fillRect(i*SquSize,j*SquSize,SquSize,SquSize);
+						}
+					}
+				}
+				for (var i=0;i<=cols;i++) {
+					ctx2.beginPath();
+					ctx2.moveTo(i*SquSize,0);
+					ctx2.lineTo(i*SquSize,rows*SquSize);
+					ctx2.closePath();
+					ctx2.strokeStyle="#000000";
+					ctx2.stroke();
+				}
+				for (var i=0;i<=rows;i++) {
+					ctx2.beginPath();
+					ctx2.moveTo(0,i*SquSize);
+					ctx2.lineTo(cols*SquSize,i*SquSize);
+					ctx2.closePath();
+					ctx2.strokeStyle="#000000";
+					ctx2.stroke();
+				}
+			}
+			function drawSnakeAndFood () {
+				ctx1.clearRect(0,0,can1.width,can1.height);
+				ctx1.fillStyle="chartreuse";
+				for (var i=0;i<snakeCount;i++) {
+					ctx1.fillRect(snake[i].x*SquSize,snake[i].y*SquSize,SquSize,SquSize);
+				}
+				ctx1.fillStyle="coral";
+				ctx1.fillRect(foodX*SquSize,foodY*SquSize,SquSize,SquSize);
+			}
+			function addFood () {
+				var food=[];
+				for (var i=0;i<cols;i++) {
+					for (var j=0;j<rows;j++) {
+						food.push({x:i,y:j});
+						if (wall[i][j]==1) {
+							food.pop();
+						} else{
+							for (var k=0;k<snakeCount;k++) {
+								if (i==snake[k].x && j==snake[k].y) {
+									food.pop();
+									break;
+								}
+							}
+						}
+					}
+				}
+				var n=Math.floor(Math.random()*food.length);
+				foodX=food[n].x;
+				foodY=food[n].y;
+			}
+			function moves () {
+				switch (GoTo){
+					case 0://上
+						snake.unshift({x:snake[0].x , y:snake[0].y-1 });
+						break;
+					case 1://右
+						snake.unshift({x:snake[0].x+1 , y:snake[0].y });
+						break;
+					case 2://下
+						snake.unshift({x:snake[0].x , y:snake[0].y+1 });
+						break;
+					case 3://左
+						snake.unshift({x:snake[0].x-1 , y:snake[0].y });
+						break;
+					default:
+						break;
+				}
+				isEat();
+				if (snakeCount!=snake.length) {
+					snake.pop();
+				}
+				isOver();
+				drawSnakeAndFood();
+			}
+			function isEat () {
+				if (snake[0].x==foodX && snake[0].y==foodY) {
+					snakeCount++;
+					speed-=2;
+					if (speed<=50) {
+						speed=50;
+					}
+					clearInterval(times);
+					times=setInterval(moves,speed);
+					score.innerHTML=snakeCount-3;
+					addFood();
+				}
+			}
+			function isOver () {
+				var x=snake[0].x,y=snake[0].y;
+				if (wall[x][y]==1) {
+					alert("Game Over!");
+					window.location.reload();
+				}
+				for (var i=1;i<snake.length;i++) {
+					if (snake[i].x==x && snake[i].y==y) {
+						alert("Game Over!");
+						window.location.href="贪吃蛇.html";
+					}
+				}
+			}
+			function startGame () {
+				drawMap();
+				addFood();
+				drawSnakeAndFood();
+				score.innerHTML=snakeCount-3;
+			}
+			document.onkeydown=function (eve) {
+				var eve=eve||window.event;
+				switch (eve.keyCode){
+					case 37:
+						if (GoTo==0 || GoTo==2) {
+							GoTo=3;
+						}
+						break;
+					case 38:
+						if (GoTo==1 || GoTo==3) {
+							GoTo=0;
+						}
+						break;
+					case 39:
+						if (GoTo==0 || GoTo==2) {
+							GoTo=1;
+						}
+						break;
+					case 40:
+						if (GoTo==1 || GoTo==3) {
+							GoTo=2;
+						}
+						break;
+					case 32:
+						if (isStop) {
+							times=setInterval(moves,speed);
+						} else {
+							clearInterval(times);
+						}
+						isStop=!isStop;
+						break;
+					default:
+						break;
+				}
+			}
+			window.onload=function () {
+				startGame();
+				alert("操作方法：\n    空格键：开始/暂停\n    方向键：转向");
+			}
+		</script>
+	</body>
+</html>

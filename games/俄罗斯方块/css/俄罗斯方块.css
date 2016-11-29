@@ -1,0 +1,58 @@
+#canvas2{
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+	margin-top: 50px;
+	z-index: 10;
+}
+#canvas{
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -100px;
+	margin-top: 50px;
+	z-index: 11;
+}
+#score{
+	width: 150px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	position: absolute;
+	left: 50%;
+	margin: 50px 0 0 140px;
+	color: red;
+}
+#speed{
+	width: 150px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	position: absolute;
+	left: 50%;
+	margin: 100px 0 0 140px;
+	color: limegreen;
+}
+#next{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 50%;
+	margin: 150px 0 0 160px;
+}
+#next img{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+var{
+	color: #6E6E6E;
+	font-style: normal;
+	font-size: 20px;
+	float: left;
+}
